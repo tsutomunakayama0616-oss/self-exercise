@@ -1,0 +1,54 @@
+/* 背景グラデーション */
+body {
+  background: linear-gradient(135deg, #a5d6a7, #81c784);
+  height: 100vh;
+  margin: 0;
+  padding-bottom: 80px; /* タブバー分 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+/* 中央のヒーローエリア */
+.hero {
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+/* アイコン（ロゴ代わり） */
+.hero-icon {
+  font-size: 70px;
+  margin-bottom: 10px;
+}
+
+/* タイトル */
+.hero-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* サブタイトル */
+.hero-sub {
+  font-size: 18px;
+  margin: 10px 0 30px;
+}
+
+/* はじめるボタン */
+.start-btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: white;
+  color: #2e7d32;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.start-btn:hover {
+  background: #f1f8e9;
+}
