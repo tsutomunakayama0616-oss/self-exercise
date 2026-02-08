@@ -1,24 +1,24 @@
 /* ---------------------------------------------------------
   セルフエクササイズ一覧（カテゴリ付き）
 --------------------------------------------------------- */
-const exerciseList = [
-  { id:1,  category:"ストレッチ", name:"ハムストリングス（大腿部後面）のストレッチ", url:"https://youtu.be/ihchQBuigY0", note:"太ももの後面の柔軟性を高めます。痛みの出ない範囲で行いましょう。" },
-  { id:2,  category:"ストレッチ", name:"大腿四頭筋（大腿部前面）のストレッチ", url:"https://youtu.be/lVpF9TiepLg", note:"太ももの前側を伸ばします。腰を反らせすぎないよう注意。" },
-  { id:3,  category:"ストレッチ", name:"腸腰筋（股関節前面）のストレッチ", url:"https://youtu.be/XIA80pBZ3ws", note:"股関節前面の柔軟性改善に効果的です。" },
+export const exerciseList = [
+  { id:1,  category:"ストレッチ", name:"ハムストリングス（大腿部後面）のストレッチ", url:"https://youtu.be/ihchQBuigY0", note:"太ももの後面の柔軟性を高めます。" },
+  { id:2,  category:"ストレッチ", name:"大腿四頭筋（大腿部前面）のストレッチ", url:"https://youtu.be/lVpF9TiepLg", note:"太ももの前側を伸ばします。" },
+  { id:3,  category:"ストレッチ", name:"腸腰筋（股関節前面）のストレッチ", url:"https://youtu.be/XIA80pBZ3ws", note:"股関節前面の柔軟性改善に。" },
   { id:4,  category:"ストレッチ", name:"内転筋（大腿部内側）のストレッチ", url:"https://youtu.be/racb4M_hycM", note:"内ももの柔軟性を高めます。" },
   { id:5,  category:"ストレッチ", name:"下腿三頭筋（ふくらはぎ）のストレッチ", url:"https://youtu.be/Wbi5St1J9Kk", note:"ふくらはぎの柔軟性改善に。" },
 
   { id:6,  category:"可動域・運動", name:"足首の上下（ポンプ）運動", url:"https://youtu.be/-inqX6tmDm8", note:"むくみ予防にも効果的です。" },
 
-  { id:7,  category:"筋力トレーニング（おしり）", name:"大殿筋（お尻）の筋力増強運動（収縮のみ）", url:"https://youtu.be/4ckJ67_8IB8", note:"お尻の筋肉を意識して力を入れます。" },
-  { id:8,  category:"筋力トレーニング（おしり）", name:"大殿筋（お尻）の筋力増強運動（ブリッジ）", url:"https://youtu.be/9zKZ-YRmU8I", note:"お尻を持ち上げて体幹も鍛えます。" },
-  { id:9,  category:"筋力トレーニング（おしり）", name:"大殿筋（お尻）の筋力増強運動（立位）", url:"https://youtu.be/aikGoCaTFFI", note:"立位で行うお尻のトレーニングです。" },
+  { id:7,  category:"筋力トレーニング（おしり）", name:"大殿筋（収縮のみ）", url:"https://youtu.be/4ckJ67_8IB8", note:"お尻の筋肉を意識して力を入れます。" },
+  { id:8,  category:"筋力トレーニング（おしり）", name:"大殿筋（ブリッジ）", url:"https://youtu.be/9zKZ-YRmU8I", note:"お尻を持ち上げて体幹も鍛えます。" },
+  { id:9,  category:"筋力トレーニング（おしり）", name:"大殿筋（立位）", url:"https://youtu.be/aikGoCaTFFI", note:"立位で行うお尻のトレーニングです。" },
 
-  { id:10, category:"筋力トレーニング（太もも）", name:"大腿四頭筋（大腿部前面）の筋力増強運動（セッティング）", url:"https://youtu.be/rweyU-3O3zo", note:"太ももの前側を目覚めさせる運動です。" },
-  { id:11, category:"筋力トレーニング（太もも）", name:"大腿四頭筋（大腿部前面）の筋力増強運動（SLR）", url:"https://youtu.be/fNM6w_RnVRk", note:"足を持ち上げる基本的な筋トレです。" },
+  { id:10, category:"筋力トレーニング（太もも）", name:"大腿四頭筋（セッティング）", url:"https://youtu.be/rweyU-3O3zo", note:"太ももの前側を目覚めさせる運動です。" },
+  { id:11, category:"筋力トレーニング（太もも）", name:"大腿四頭筋（SLR）", url:"https://youtu.be/fNM6w_RnVRk", note:"足を持ち上げる基本的な筋トレです。" },
 
-  { id:12, category:"筋力トレーニング（股関節外側）", name:"中殿筋（殿部外側）の筋力増強運動（背臥位）", url:"https://youtu.be/UBN5jCP-ErM", note:"股関節外側の安定性を高めます。" },
-  { id:13, category:"筋力トレーニング（股関節外側）", name:"中殿筋（殿部外側）の筋力増強運動（立位）", url:"https://youtu.be/0gKoLDR8HcI", note:"立位で行う中殿筋トレーニングです。" },
+  { id:12, category:"筋力トレーニング（股関節外側）", name:"中殿筋（背臥位）", url:"https://youtu.be/UBN5jCP-ErM", note:"股関節外側の安定性を高めます。" },
+  { id:13, category:"筋力トレーニング（股関節外側）", name:"中殿筋（立位）", url:"https://youtu.be/0gKoLDR8HcI", note:"立位で行う中殿筋トレーニングです。" },
 
   { id:14, category:"バランス練習", name:"バランス運動（タンデム）", url:"https://youtu.be/F0OVS9LT1w4", note:"前後に足を並べてバランスを取ります。" },
   { id:15, category:"バランス練習", name:"バランス運動（片脚立位）", url:"https://youtu.be/HUjoGJtiknc", note:"片脚で立つバランス練習です。" },
@@ -39,6 +39,7 @@ const list = document.getElementById("exercise-list");
 
 if (list) {
   const byCategory = {};
+
   exerciseList.forEach(ex => {
     if (!byCategory[ex.category]) byCategory[ex.category] = [];
     byCategory[ex.category].push(ex);
@@ -56,21 +57,9 @@ if (list) {
       div.innerHTML = `
         <img src="${getThumbnail(ex.url)}" class="thumb" />
         <h3>${ex.name}</h3>
-        <a href="exercise-detail.html?id=${ex.id}">動画を見る</a>
+        <a href="check.html?id=${ex.id}">フォームを確認</a>
       `;
       list.appendChild(div);
     });
   });
-}
-
-/* 詳細ページ：説明文＋動画 */
-const params = new URLSearchParams(window.location.search);
-const id = Number(params.get("id"));
-const detail = exerciseList.find(e => e.id === id);
-
-if (detail) {
-  document.getElementById("exercise-title").textContent = detail.name;
-  document.getElementById("exercise-description").textContent = detail.category;
-  document.getElementById("exercise-note").textContent = detail.note;
-  document.getElementById("exercise-video").src = detail.url;
 }
