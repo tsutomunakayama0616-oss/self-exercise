@@ -1,26 +1,28 @@
-<nav class="tabbar">
-  <a href="index.html">
-    <img src="home.png" class="tab-icon">
-    <span>ホーム</span>
-  </a>
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: #ffffff;
+  border-top: 2px solid #c8e6c9;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 9999;
+}
 
-  <a href="exercises.html">
-    <img src="exercise.png" class="tab-icon">
-    <span>エクササイズ</span>
-  </a>
+.tabbar a {
+  text-decoration: none;
+  color: #2e7d32;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  <a href="check.html">
-    <img src="form.png" class="tab-icon">
-    <span>フォーム</span>
-  </a>
-
-  <a href="progress.html">
-    <img src="progress.png" class="tab-icon">
-    <span>進捗</span>
-  </a>
-
-  <a href="guide.html">
-    <img src="guide.png" class="tab-icon">
-    <span>ガイド</span>
-  </a>
-</nav>
+.tab-icon {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 4px;
+}
