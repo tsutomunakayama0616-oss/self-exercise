@@ -4,11 +4,11 @@
 const data = JSON.parse(localStorage.getItem("analysis_result"));
 
 if (!data) {
-  document.getElementById("result-area").innerHTML =
+  document.querySelector(".card").innerHTML =
     "<p>解析データが見つかりませんでした。</p>";
 } else {
   /* ---------------------------------------------------------
-     各角度を画面に反映
+     数値を反映
   --------------------------------------------------------- */
   document.getElementById("abduction").textContent = data.hipAbduction;
   document.getElementById("knee").textContent = data.knee;
@@ -16,7 +16,7 @@ if (!data) {
   document.getElementById("trunk").textContent = data.trunk;
 
   /* ---------------------------------------------------------
-     評価コメント（簡易版）
+     評価コメント
   --------------------------------------------------------- */
   const good = [];
   const bad = [];
