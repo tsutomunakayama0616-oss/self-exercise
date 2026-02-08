@@ -3,15 +3,26 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #e8f5e9;
+  height: 60px;
+
+  background: #ffffff;
+  border-top: 2px solid #c8e6c9;
+
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
-  border-top: 1px solid #c8e6c9;
+  align-items: center;
+
+  z-index: 9999; /* 常に最前面 */
 }
 
 .tabbar a {
   text-decoration: none;
   color: #2e7d32;
   font-weight: bold;
+  font-size: 14px;
+}
+
+/* 全ページでタブバーの高さ分だけ余白を確保 */
+body {
+  padding-bottom: 80px !important;
 }
