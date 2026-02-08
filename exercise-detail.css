@@ -1,0 +1,44 @@
+.video-wrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 280px;
+  border-radius: 10px;
+}
+
+.camera-area {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+
+#camera {
+  width: 100%;
+  border-radius: 10px;
+}
+
+#skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#analyze-btn {
+  width: 90%;
+  max-width: 400px;
+  padding: 12px;
+  margin: 20px auto;
+  display: block;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+}
