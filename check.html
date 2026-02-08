@@ -6,19 +6,38 @@
   <title>フォームチェック</title>
 
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="camera.css" />
+  <link rel="stylesheet" href="card.css" />
+  <link rel="stylesheet" href="tabbar.css" />
+  <link rel="stylesheet" href="check.css" />
 
-  <link rel="stylesheet" href="tabbar.css">
-　<script src="tabbar.js" defer></script>
+  <script src="tabbar.js" defer></script>
 
+  <!-- TensorFlow.js + MoveNet -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
 </head>
 <body>
 
   <h1>フォームチェック</h1>
 
-  <video id="camera" autoplay playsinline></video>
-  <button id="capture">撮影</button>
+  <!-- 選択された動画 -->
+  <div class="video-wrapper">
+    <iframe id="exercise-youtube" frameborder="0" allowfullscreen></iframe>
+  </div>
 
-  <script type="module" src="analysis.js"></script>
+  <!-- カメラ起動ボタン -->
+  <button id="start-camera-btn">カメラを起動</button>
+
+  <!-- カメラ＋骨格モデル -->
+  <div id="camera-area" class="camera-area" style="display:none;">
+    <video id="camera" autoplay playsinline></video>
+    <canvas id="skeleton"></canvas>
+  </div>
+
+  <!-- 解析ボタン -->
+  <button id="analyze-btn" style="display:none;">解析する</button>
+
+  <script type="module" src="check.js"></script>
 </body>
 </html>
