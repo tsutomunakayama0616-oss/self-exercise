@@ -7,21 +7,38 @@
 
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="card.css" />
+  <link rel="stylesheet" href="tabbar.css" />
+  <link rel="stylesheet" href="exercise-detail.css" />
 
-  <link rel="stylesheet" href="tabbar.css">
-　<script src="tabbar.js" defer></script>
-
+  <!-- TensorFlow.js + MoveNet -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
 </head>
 <body>
 
   <h1 id="exercise-title"></h1>
   <p id="exercise-description"></p>
-
   <div id="exercise-note" class="card"></div>
 
-  <video id="exercise-video" controls playsinline
-    style="width:100%; max-width:400px; border-radius:10px; margin-top:1em;"></video>
+  <!-- ① YouTube動画 -->
+  <div class="video-wrapper">
+    <iframe id="exercise-youtube" frameborder="0" allowfullscreen></iframe>
+  </div>
 
-  <script type="module" src="exercises.js"></script>
+  <!-- ② カメラ＋骨格モデル -->
+  <div class="camera-area">
+    <video id="camera" autoplay playsinline></video>
+    <canvas id="skeleton"></canvas>
+  </div>
+
+  <!-- ③ 解析ボタン -->
+  <button id="analyze-btn">解析を開始</button>
+
+  <!-- タブバー（自動挿入） -->
+  <script src="tabbar.js" defer></script>
+
+  <!-- MoveNet + カメラ制御 -->
+  <script type="module" src="exercise-detail.js"></script>
 </body>
 </html>
