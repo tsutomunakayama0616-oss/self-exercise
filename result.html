@@ -1,32 +1,57 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>解析結果</title>
+/* ---------------------------------------------------------
+   解析結果の読み込み
+--------------------------------------------------------- */
+const data = JSON.parse(localStorage.getItem("analysis_result"));
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="card.css" />
+if (!data) {
+  // データがない場合のエラー表示
+  const area = document.querySelector(".card");
+  area.innerHTML = "<p>解析データが見つかりませんでした。</p>";
+} else {
+  /* ---------------------------------------------------------
+     各角度を画面に反映
+  --------------------------------------------------------- */
+  document.getElementById("abduction").textContent = data.hipAbduction;
+  document.getElementById("knee").textContent = data.knee;
+  document.getElementById("pelvis").textContent = data.pelvis;
+  document.getElementById("trunk").textContent = data.trunk;
 
-  <link rel="stylesheet" href="tabbar.css">
-　<script src="tabbar.js" defer></script>
+  /* ---------------------------------------------------------
+     評価コメント（簡易版）
+  --------------------------------------------------------- */
+  const good = [];
+  const bad = [];
 
-</head>
-<body>
+  // 股関節外転角度
+  if (data.hipAbduction >= 25 && data.hipAbduction <= 40)
+    good.push("股関節の開きは良好です。");
+  else
+    bad.push("股関節の開きがやや不足しています。");
 
-  <h1>解析結果</h1>
+  // 膝角度
+  if (data.knee >= 50 && data.knee <= 70)
+    good.push("膝の曲がり具合は適切です。");
+  else
+    bad.push("膝の角度をもう少し調整しましょう。");
 
-  <div class="card">
-    <p>股関節外転角度：<span id="abduction"></span>°</p>
-    <p>膝角度：<span id="knee"></span>°</p>
-    <p>骨盤傾斜：<span id="pelvis"></span>°</p>
-    <p>体幹傾き：<span id="trunk"></span>°</p>
-  </div>
+  // 骨盤傾斜
+  if (Math.abs(data.pelvis) <= 10)
+    good.push("骨盤の傾きは安定しています。");
+  else
+    bad.push("骨盤の左右差に注意しましょう。");
 
-  <h2>評価</h2>
-  <ul id="good"></ul>
-  <ul id="bad"></ul>
+  // 体幹傾き
+  if (data.trunk <= 10)
+    good.push("体幹の傾きは良好です。");
+  else
+    bad.push("体幹の前後の傾きに注意しましょう。");
 
-  <script type="module" src="result.js"></script>
-</body>
-</html>
+  /* ---------------------------------------------------------
+     HTML に反映
+  --------------------------------------------------------- */
+  document.getElementById("good").innerHTML =
+    good.map(t => `<li>${t}</li>`).join("");
+
+  document.getElementById("bad").innerHTML =
+    bad.map(t => `<li>${t}</li>`).join("");
+}
