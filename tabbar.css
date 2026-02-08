@@ -1,0 +1,17 @@
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #e8f5e9;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top: 1px solid #c8e6c9;
+}
+
+.tabbar a {
+  text-decoration: none;
+  color: #2e7d32;
+  font-weight: bold;
+}
