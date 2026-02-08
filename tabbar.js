@@ -2,27 +2,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const tabbar = `
     <nav class="tabbar">
       <a href="index.html">
-        <img src="home.png" class="🏠">
+        <img src="🏠">
         <span>ホーム</span>
       </a>
 
       <a href="exercises.html">
-        <img src="exercise.png" class="🏋️">
+        <img src="🏋️">
         <span>エクササイズ</span>
       </a>
 
       <a href="check.html">
-        <img src="form.png" class="🏃‍♂️‍➡️">
+        <img src="🏃‍♂️‍➡️">
         <span>フォーム</span>
       </a>
 
       <a href="progress.html">
-        <img src="progress.png" class="📆">
+        <img src="📆">
         <span>進捗</span>
       </a>
 
       <a href="guide.html">
-        <img src="guide.png" class="📖">
+        <img src="📖">
         <span>ガイド</span>
       </a>
     </nav>
