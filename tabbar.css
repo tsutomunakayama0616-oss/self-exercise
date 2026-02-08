@@ -3,26 +3,26 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px;
-
+  height: 70px;
   background: #ffffff;
   border-top: 2px solid #c8e6c9;
-
   display: flex;
   justify-content: space-around;
   align-items: center;
-
-  z-index: 9999; /* 常に最前面 */
+  z-index: 9999;
 }
 
 .tabbar a {
   text-decoration: none;
   color: #2e7d32;
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* 全ページでタブバーの高さ分だけ余白を確保 */
-body {
-  padding-bottom: 80px !important;
+.tab-icon {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 4px;
 }
