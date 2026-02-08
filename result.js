@@ -21,7 +21,7 @@ if (!data) {
   const good = [];
   const bad = [];
 
-  // 股関節外転
+  // 股関節外転角度
   if (data.hipAbduction >= 25 && data.hipAbduction <= 40)
     good.push("股関節の開きは良好です。");
   else
