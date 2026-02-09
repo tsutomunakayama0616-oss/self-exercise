@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>進捗</title>
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="card.css" />
-
-  <link rel="stylesheet" href="tabbar.css">
-　<script src="tabbar.js" defer></script>
-
+  <link rel="stylesheet" href="progress.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-  <h1>進捗</h1>
-  <div id="progress-list"></div>
+<div class="container">
+  <header class="header">
+    <h1>フォーム精度の推移</h1>
+  </header>
 
-  <script type="module" src="progress.js"></script>
+  <main>
+    <div class="tabs">
+      <select id="yearSelect"></select>
+      <select id="monthSelect"></select>
+    </div>
+
+    <canvas id="progressChart"></canvas>
+  </main>
+</div>
+
+<script src="progress.js"></script>
 </body>
 </html>
