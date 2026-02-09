@@ -19,7 +19,7 @@
 
   <main>
 
-    <!-- YouTube動画 -->
+    <!-- YouTube動画（エクササイズから渡された種目に応じて切り替え） -->
     <div class="video-wrapper">
       <iframe id="exerciseVideo" src="" frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -28,19 +28,19 @@
 
     <!-- ▼▼▼ 新しい撮影フロー ▼▼▼ -->
 
-    <!-- ① カメラ起動前（撮影前） -->
+    <!-- ① カメラ起動エリア -->
     <div id="camera-area">
       <video id="camera" autoplay playsinline></video>
       <button id="start-record" class="primary-btn">撮影開始</button>
     </div>
 
-    <!-- ② 録画中 -->
+    <!-- ② 録画中エリア -->
     <div id="recording-area" style="display:none;">
       <video id="camera-recording" autoplay playsinline></video>
       <button id="stop-record" class="secondary-btn">停止</button>
     </div>
 
-    <!-- ③ 撮影後プレビュー -->
+    <!-- ③ プレビューエリア -->
     <div id="preview-area" style="display:none;">
       <video id="preview" controls></video>
 
