@@ -2,83 +2,52 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>ホーム</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>自主トレサポート</title>
+
   <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="tabbar.css">
 
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
-　<meta name="theme-color" content="#2196f3">
-
-　<!-- iOS 用 -->
-　<link rel="apple-touch-icon" href="icon-192.png">
-　<meta name="apple-mobile-web-app-capable" content="yes">
-　<meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="theme-color" content="#2196f3">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
+
 <body>
 
-<div class="container">
+<div class="container start-container">
 
-  <header class="header">
-    <h1>フォームチェックアプリ</h1>
-  </header>
+  <!-- ★ start.png をアイコン位置に配置 ★ -->
+  <div class="start-icon">
+    <img src="start.png" alt="スタート画像">
+  </div>
 
-  <main>
+  <!-- タイトル -->
+  <h1 class="start-title">自主トレサポート</h1>
 
-    <!-- メインイラスト -->
-    <div class="hero">
-      <img src="start.png" class="hero-image" alt="スタート画像">
-    </div>
+  <!-- サブタイトル -->
+  <p class="start-subtitle">あなたのリハビリをもっと身近に。</p>
 
-    <!-- 今日の目標 -->
-    <div class="goal-box">
-      <h2>今日の目標</h2>
-      <p id="todayGoal">--</p>
-    </div>
+  <!-- はじめるボタン -->
+  <div class="start-btn-area">
+    <a href="exercises.html" class="start-btn">はじめる</a>
+  </div>
 
-    <!-- メニュー -->
-    <div class="menu">
-      <a href="exercises.html" class="menu-card">
-        <h3>エクササイズを選ぶ</h3>
-        <p>フォームをチェックしながら運動しましょう。</p>
-      </a>
-
-      <a href="progress.html" class="menu-card">
-        <h3>進捗を見る</h3>
-        <p>これまでのフォーム精度を確認できます。</p>
-      </a>
-
-      <a href="guide.html" class="menu-card">
-        <h3>使い方ガイド</h3>
-        <p>アプリの使い方と撮影のポイント。</p>
-      </a>
-    </div>
-
-  </main>
 </div>
 
 <!-- 下タブ -->
 <div class="tabbar">
   <a href="index.html" class="tab-item active"><span>ホーム</span></a>
   <a href="exercises.html" class="tab-item"><span>エクササイズ</span></a>
+  <a href="check.html" class="tab-item"><span>フォーム</span></a>
   <a href="progress.html" class="tab-item"><span>進捗</span></a>
   <a href="guide.html" class="tab-item"><span>ガイド</span></a>
 </div>
-
-<script>
-  const goals = [
-    "スクワットを10回正しいフォームで行う",
-    "ヒップリフトをゆっくり10回行う",
-    "サイドレッグレイズを左右10回ずつ行う",
-    "姿勢を意識して5分間立つ",
-    "肩の力を抜いて深呼吸を3回する"
-  ];
-  document.getElementById("todayGoal").textContent =
-    goals[Math.floor(Math.random() * goals.length)];
-</script>
 
 <script>
 if ("serviceWorker" in navigator) {
