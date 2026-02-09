@@ -6,7 +6,7 @@ let recordedChunks = [];
 async function startCamera() {
   stream = await navigator.mediaDevices.getUserMedia({
     video: { facingMode: "user" },
-    audio: true
+    audio: false
   });
 
   const cam = document.getElementById("camera");
