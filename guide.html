@@ -3,26 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>使い方ガイド</title>
+  <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="guide.css">
+  <link rel="stylesheet" href="tabbar.css">
 </head>
 <body>
 
 <div class="container">
+
   <header class="header">
     <h1>使い方ガイド</h1>
   </header>
 
   <main>
+
+    <!-- ① アプリの流れ -->
     <section class="section">
       <h2>① アプリの流れ</h2>
       <p>
         1. ホーム画面から「エクササイズを選ぶ」をタップします。<br>
-        2. 種目を選び、フォームチェックを開始します。<br>
-        3. カメラに全身が映るように立ち、画面の指示に従って動きます。<br>
-        4. 結果画面でフォームの評価と改善ポイントを確認します。
+        2. 種目を選ぶとフォームチェック画面に移動します。<br>
+        3. 上部の動画で動きを確認し、カメラを起動します。<br>
+        4. 骨格モデルと解析結果を見ながらフォームを調整します。<br>
+        5. 結果は自動的に保存され、進捗画面で確認できます。
       </p>
     </section>
 
+    <!-- ② カメラ撮影のポイント -->
     <section class="section">
       <h2>② カメラ撮影のポイント</h2>
       <p>
@@ -34,15 +41,25 @@
       </p>
     </section>
 
+    <!-- ③ 注意事項 -->
     <section class="section">
       <h2>③ 注意事項</h2>
       <p>
         ・ 体調がすぐれないときは無理をしないでください。<br>
         ・ 痛みが強い場合や不安がある場合は、主治医やリハビリスタッフに相談してください。<br>
-        ・ このアプリはあくまでフォームの目安を示すものであり、医療的な診断を行うものではありません。
+        ・ このアプリはフォームの目安を示すものであり、医療的な診断を行うものではありません。
       </p>
     </section>
+
   </main>
+</div>
+
+<!-- 下タブ -->
+<div class="tabbar">
+  <a href="index.html" class="tab-item"><span>ホーム</span></a>
+  <a href="exercises.html" class="tab-item"><span>エクササイズ</span></a>
+  <a href="progress.html" class="tab-item"><span>進捗</span></a>
+  <a href="guide.html" class="tab-item active"><span>ガイド</span></a>
 </div>
 
 </body>
