@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>エクササイズ一覧</title>
+  <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="exercises.css">
+  <link rel="stylesheet" href="tabbar.css">
 </head>
 <body>
 
@@ -12,81 +14,195 @@
     <h1>エクササイズを選ぶ</h1>
   </header>
 
-  <main class="list">
-    <a href="exercise-detail.html?exercise=hamstring" class="item">
-      <h3>ハムストリングス（大腿部後面）のストレッチ</h3>
-      <p>もも裏の柔軟性を高めます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=quad_stretch" class="item">
-      <h3>大腿四頭筋（大腿部前面）のストレッチ</h3>
-      <p>もも前の柔軟性を高めます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=iliopsoas" class="item">
-      <h3>腸腰筋（股関節前面）のストレッチ</h3>
-      <p>股関節前面の柔軟性を高めます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=adductor" class="item">
-      <h3>内転筋（大腿部内側）のストレッチ</h3>
-      <p>内ももの柔軟性を高めます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=calf" class="item">
-      <h3>下腿三頭筋（ふくらはぎ）のストレッチ</h3>
-      <p>ふくらはぎの柔軟性を高めます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=ankle_pump" class="item">
-      <h3>足首の上下（ポンプ）運動</h3>
-      <p>血流促進とむくみ予防に。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=glute_set" class="item">
-      <h3>大殿筋の筋力増強（収縮のみ）</h3>
-      <p>お尻の筋肉を意識して収縮します。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=glute_bridge" class="item">
-      <h3>大殿筋の筋力増強（ブリッジ）</h3>
-      <p>お尻と体幹の安定性を高めます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=glute_stand" class="item">
-      <h3>大殿筋の筋力増強（立位）</h3>
-      <p>立位でのお尻の筋力を鍛えます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=quad_setting" class="item">
-      <h3>大腿四頭筋の筋力増強（セッティング）</h3>
-      <p>膝を伸ばす筋力を安全に鍛えます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=quad_slr" class="item">
-      <h3>大腿四頭筋の筋力増強（SLR）</h3>
-      <p>膝を伸ばしたまま脚を持ち上げます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=gm_back" class="item">
-      <h3>中殿筋の筋力増強（背臥位）</h3>
-      <p>横向きで股関節外側を鍛えます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=gm_stand" class="item">
-      <h3>中殿筋の筋力増強（立位）</h3>
-      <p>立位での骨盤の安定性を高めます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=balance_tandem" class="item">
-      <h3>バランス運動（タンデム）</h3>
-      <p>前後に足を並べてバランスをとります。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=balance_single" class="item">
-      <h3>バランス運動（片脚立位）</h3>
-      <p>片脚でのバランス能力を高めます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=walking" class="item">
-      <h3>ウォーキング</h3>
-      <p>全身の持久力と歩行能力を高めます。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=ergometer" class="item">
-      <h3>自転車エルゴメータ</h3>
-      <p>膝にやさしい有酸素運動です。</p>
-    </a>
-    <a href="exercise-detail.html?exercise=water" class="item">
-      <h3>水中運動</h3>
-      <p>関節にやさしい全身運動です。</p>
-    </a>
+  <main>
+
+    <!-- ストレッチ系 -->
+    <h2 class="category-title">ストレッチ</h2>
+
+    <div class="exercise-card" onclick="goCheck('hamstring')">
+      <img src="https://img.youtube.com/vi/ihchQBuigY0/0.jpg">
+      <div>
+        <h3>ハムストリングス（大腿部後面）</h3>
+        <p>もも裏の柔軟性を高めます。</p>
+      </div>
+    </div>
+
+    <div class="exercise-card" onclick="goCheck('quad_stretch')">
+      <img src="https://img.youtube.com/vi/lVpF9TiepLg/0.jpg">
+      <div>
+        <h3>大腿四頭筋（大腿部前面）</h3>
+        <p>もも前の柔軟性を高めます。</p>
+      </div>
+    </div>
+
+    <div class="exercise-card" onclick="goCheck('iliopsoas')">
+      <img src="https://img.youtube.com/vi/XIA80pBZ3ws/0.jpg">
+      <div>
+        <h3>腸腰筋（股関節前面）</h3>
+        <p>股関節前面の柔軟性を高めます。</p>
+      </div>
+    </div>
+
+    <div class="exercise-card" onclick="goCheck('adductor')">
+      <img src="https://img.youtube.com/vi/racb4M_hycM/0.jpg">
+      <div>
+        <h3>内転筋（大腿部内側）</h3>
+        <p>内ももの柔軟性を高めます。</p>
+      </div>
+    </div>
+
+    <div class="exercise-card" onclick="goCheck('calf')">
+      <img src="https://img.youtube.com/vi/Wbi5St1J9Kk/0.jpg">
+      <div>
+        <h3>下腿三頭筋（ふくらはぎ）</h3>
+        <p>ふくらはぎの柔軟性を高めます。</p>
+      </div>
+    </div>
+
+
+    <!-- 可動域・血流改善 -->
+    <h2 class="category-title">可動域・血流改善</h2>
+
+    <div class="exercise-card" onclick="goCheck('ankle_pump')">
+      <img src="https://img.youtube.com/vi/-inqX6tmDm8/0.jpg">
+      <div>
+        <h3>足首の上下（ポンプ）運動</h3>
+        <p>血流促進とむくみ予防に。</p>
+      </div>
+    </div>
+
+
+    <!-- 大殿筋 -->
+    <h2 class="category-title">大殿筋（お尻）</h2>
+
+    <div class="exercise-card" onclick="goCheck('glute_set')">
+      <img src="https://img.youtube.com/vi/4ckJ67_8IB8/0.jpg">
+      <div>
+        <h3>大殿筋（収縮のみ）</h3>
+        <p>お尻の筋肉を意識して収縮します。</p>
+      </div>
+    </div>
+
+    <div class="exercise-card" onclick="goCheck('glute_bridge')">
+      <img src="https://img.youtube.com/vi/9zKZ-YRmU8I/0.jpg">
+      <div>
+        <h3>大殿筋（ブリッジ）</h3>
+        <p>お尻と体幹の安定性を高めます。</p>
+      </div>
+    </div>
+
+    <div class="exercise-card" onclick="goCheck('glute_stand')">
+      <img src="https://img.youtube.com/vi/aikGoCaTFFI/0.jpg">
+      <div>
+        <h3>大殿筋（立位）</h3>
+        <p>立位でのお尻の筋力を鍛えます。</p>
+      </div>
+    </div>
+
+
+    <!-- 大腿四頭筋 -->
+    <h2 class="category-title">大腿四頭筋（もも前）</h2>
+
+    <div class="exercise-card" onclick="goCheck('quad_setting')">
+      <img src="https://img.youtube.com/vi/rweyU-3O3zo/0.jpg">
+      <div>
+        <h3>大腿四頭筋（セッティング）</h3>
+        <p>膝を伸ばす筋力を安全に鍛えます。</p>
+      </div>
+    </div>
+
+    <div class="exercise-card" onclick="goCheck('quad_slr')">
+      <img src="https://img.youtube.com/vi/fNM6w_RnVRk/0.jpg">
+      <div>
+        <h3>大腿四頭筋（SLR）</h3>
+        <p>膝を伸ばしたまま脚を持ち上げます。</p>
+      </div>
+    </div>
+
+
+    <!-- 中殿筋 -->
+    <h2 class="category-title">中殿筋（股関節外側）</h2>
+
+    <div class="exercise-card" onclick="goCheck('gm_back')">
+      <img src="https://img.youtube.com/vi/UBN5jCP-ErM/0.jpg">
+      <div>
+        <h3>中殿筋（背臥位）</h3>
+        <p>横向きで股関節外側を鍛えます。</p>
+      </div>
+    </div>
+
+    <div class="exercise-card" onclick="goCheck('gm_stand')">
+      <img src="https://img.youtube.com/vi/0gKoLDR8HcI/0.jpg">
+      <div>
+        <h3>中殿筋（立位）</h3>
+        <p>立位で骨盤の安定性を高めます。</p>
+      </div>
+    </div>
+
+
+    <!-- バランス -->
+    <h2 class="category-title">バランス</h2>
+
+    <div class="exercise-card" onclick="goCheck('balance_tandem')">
+      <img src="https://img.youtube.com/vi/F0OVS9LT1w4/0.jpg">
+      <div>
+        <h3>バランス（タンデム）</h3>
+        <p>前後に足を並べてバランスをとります。</p>
+      </div>
+    </div>
+
+    <div class="exercise-card" onclick="goCheck('balance_single')">
+      <img src="https://img.youtube.com/vi/HUjoGJtiknc/0.jpg">
+      <div>
+        <h3>バランス（片脚立位）</h3>
+        <p>片脚でのバランス能力を高めます。</p>
+      </div>
+    </div>
+
+
+    <!-- 有酸素 -->
+    <h2 class="category-title">有酸素運動</h2>
+
+    <div class="exercise-card" onclick="goCheck('walking')">
+      <img src="https://img.youtube.com/vi/Cs4NOzgkS8s/0.jpg">
+      <div>
+        <h3>ウォーキング</h3>
+        <p>全身の持久力と歩行能力を高めます。</p>
+      </div>
+    </div>
+
+    <div class="exercise-card" onclick="goCheck('ergometer')">
+      <img src="https://img.youtube.com/vi/12_J_pr-MUE/0.jpg">
+      <div>
+        <h3>自転車エルゴメータ</h3>
+        <p>膝にやさしい有酸素運動です。</p>
+      </div>
+    </div>
+
+    <div class="exercise-card" onclick="goCheck('water')">
+      <img src="https://img.youtube.com/vi/xqj3dn9mw50/0.jpg">
+      <div>
+        <h3>水中運動</h3>
+        <p>関節にやさしい全身運動です。</p>
+      </div>
+    </div>
+
   </main>
 </div>
+
+<!-- 下タブ -->
+<div class="tabbar">
+  <a href="index.html" class="tab-item"><span>ホーム</span></a>
+  <a href="exercises.html" class="tab-item active"><span>エクササイズ</span></a>
+  <a href="progress.html" class="tab-item"><span>進捗</span></a>
+  <a href="guide.html" class="tab-item"><span>ガイド</span></a>
+</div>
+
+<script>
+function goCheck(exercise) {
+  location.href = "check.html?exercise=" + exercise;
+}
+</script>
 
 </body>
 </html>
