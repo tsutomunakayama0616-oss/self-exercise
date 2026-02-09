@@ -1,105 +1,89 @@
-/* カメラと骨格ライン */
-#camera, #skeleton {
+.header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* YouTube動画 */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  margin-bottom: 16px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* カメラエリア */
+.camera-area {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+#camera {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#poseCanvas {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/* ボタン */
+.primary-btn,
+.secondary-btn {
   width: 100%;
-  height: 100%;
-}
-
-/* 距離ガイド */
-#distance-guide {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 20px;
-  background: rgba(255,255,255,0.4);
-  border-radius: 10px;
-  overflow: hidden;
-  z-index: 9999;
-}
-
-#distance-bar {
-  height: 100%;
-  width: 0%;
-  background: green;
-  transition: width 0.2s, background 0.2s;
-}
-
-#distance-text {
-  margin-top: 5px;
-  text-align: center;
-  font-size: 14px;
-  color: #fff;
-  text-shadow: 0 0 4px #000;
-}
-
-/* リアルタイム姿勢評価 */
-#live-feedback {
-  position: absolute;
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 16px;
-  z-index: 9999;
-  text-align: center;
-  min-width: 200px;
-}
-
-/* AIコーチ */
-#coach {
-  position: absolute;
-  bottom: 120px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 9999;
-}
-
-#coach-img {
-  width: 60px;
-  height: auto;
-}
-
-#coach-text {
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-/* アプリ風 UI（丸ボタン） */
-.camera-ui {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  z-index: 9999;
-}
-
-.circle-btn {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  padding: 12px;
+  border-radius: 999px;
+  font-size: 15px;
   border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
-.circle-btn.start {
+.primary-btn {
   background: #4caf50;
-  box-shadow: 0 0 10px rgba(76,175,80,0.6);
+  color: #fff;
 }
 
-.circle-btn.stop {
-  background: #f44336;
-  box-shadow: 0 0 10px rgba(244,67,54,0.6);
+.secondary-btn {
+  background: #ddd;
+  color: #333;
+}
+
+/* 解析結果 */
+.result-box {
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  margin-bottom: 20px;
+}
+
+.result-box h2 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.result-box p {
+  margin: 0;
+  font-size: 14px;
+  color: #444;
 }
