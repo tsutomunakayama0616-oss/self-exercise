@@ -1,29 +1,92 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>エクササイズ一覧</title>
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="card.css" />
-  <link rel="stylesheet" href="tabbar.css" />
-
-  <link rel="stylesheet" href="tabbar.css">
-　<script src="tabbar.js" defer></script>
-
+  <link rel="stylesheet" href="exercises.css">
 </head>
 <body>
 
-  <h1>エクササイズ一覧</h1>
-  <div id="exercise-list"></div>
+<div class="container">
+  <header class="header">
+    <h1>エクササイズを選ぶ</h1>
+  </header>
 
-  <nav class="tabbar">
-    <a href="index.html">ホーム</a>
-    <a href="check.html">フォームチェック</a>
-    <a href="progress.html">進捗</a>
-  </nav>
+  <main class="list">
+    <a href="exercise-detail.html?exercise=hamstring" class="item">
+      <h3>ハムストリングス（大腿部後面）のストレッチ</h3>
+      <p>もも裏の柔軟性を高めます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=quad_stretch" class="item">
+      <h3>大腿四頭筋（大腿部前面）のストレッチ</h3>
+      <p>もも前の柔軟性を高めます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=iliopsoas" class="item">
+      <h3>腸腰筋（股関節前面）のストレッチ</h3>
+      <p>股関節前面の柔軟性を高めます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=adductor" class="item">
+      <h3>内転筋（大腿部内側）のストレッチ</h3>
+      <p>内ももの柔軟性を高めます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=calf" class="item">
+      <h3>下腿三頭筋（ふくらはぎ）のストレッチ</h3>
+      <p>ふくらはぎの柔軟性を高めます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=ankle_pump" class="item">
+      <h3>足首の上下（ポンプ）運動</h3>
+      <p>血流促進とむくみ予防に。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=glute_set" class="item">
+      <h3>大殿筋の筋力増強（収縮のみ）</h3>
+      <p>お尻の筋肉を意識して収縮します。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=glute_bridge" class="item">
+      <h3>大殿筋の筋力増強（ブリッジ）</h3>
+      <p>お尻と体幹の安定性を高めます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=glute_stand" class="item">
+      <h3>大殿筋の筋力増強（立位）</h3>
+      <p>立位でのお尻の筋力を鍛えます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=quad_setting" class="item">
+      <h3>大腿四頭筋の筋力増強（セッティング）</h3>
+      <p>膝を伸ばす筋力を安全に鍛えます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=quad_slr" class="item">
+      <h3>大腿四頭筋の筋力増強（SLR）</h3>
+      <p>膝を伸ばしたまま脚を持ち上げます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=gm_back" class="item">
+      <h3>中殿筋の筋力増強（背臥位）</h3>
+      <p>横向きで股関節外側を鍛えます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=gm_stand" class="item">
+      <h3>中殿筋の筋力増強（立位）</h3>
+      <p>立位での骨盤の安定性を高めます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=balance_tandem" class="item">
+      <h3>バランス運動（タンデム）</h3>
+      <p>前後に足を並べてバランスをとります。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=balance_single" class="item">
+      <h3>バランス運動（片脚立位）</h3>
+      <p>片脚でのバランス能力を高めます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=walking" class="item">
+      <h3>ウォーキング</h3>
+      <p>全身の持久力と歩行能力を高めます。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=ergometer" class="item">
+      <h3>自転車エルゴメータ</h3>
+      <p>膝にやさしい有酸素運動です。</p>
+    </a>
+    <a href="exercise-detail.html?exercise=water" class="item">
+      <h3>水中運動</h3>
+      <p>関節にやさしい全身運動です。</p>
+    </a>
+  </main>
+</div>
 
-  <script type="module" src="exercises.js"></script>
 </body>
 </html>
