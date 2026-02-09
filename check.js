@@ -1,4 +1,10 @@
 // =======================
+// エクササイズ種別の取得
+// =======================
+const params = new URLSearchParams(location.search);
+const exercise = params.get("exercise") || "squat";
+
+// =======================
 // 音声フィードバック
 // =======================
 function speak(text) {
