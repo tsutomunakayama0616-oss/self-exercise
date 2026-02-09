@@ -2,11 +2,11 @@ let stream;
 let mediaRecorder;
 let recordedChunks = [];
 
-// ★ インカメラ起動（ミラー表示）
+// ★ インカメラ起動（音声オフ・ミラー表示）
 async function startCamera() {
   stream = await navigator.mediaDevices.getUserMedia({
     video: { facingMode: "user" },
-    audio: false
+    audio: false   // ← 音声オフ
   });
 
   const cam = document.getElementById("camera");
@@ -19,6 +19,11 @@ startCamera();
 // ★ 撮影開始
 document.getElementById("start-record").onclick = () => {
   recordedChunks = [];
+
+  // ★ 録画中の映像にも stream を表示
+  const camRec = document.getElementById("camera-recording");
+  camRec.srcObject = stream;
+  camRec.style.transform = "scaleX(-1)";
 
   mediaRecorder = new MediaRecorder(stream);
 
@@ -60,5 +65,5 @@ document.getElementById("retry").onclick = () => {
 
 // ★ 解析を始める → 既存の解析ページへ遷移
 document.getElementById("analyze").onclick = () => {
-  window.location.href = "result.html"; // ← あなたの解析ページに合わせて変更
+  window.location.href = "result.html";
 };
