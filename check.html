@@ -1,43 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>フォームチェック</title>
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="card.css" />
-  <link rel="stylesheet" href="tabbar.css" />
-  <link rel="stylesheet" href="check.css" />
-
-  <script src="tabbar.js" defer></script>
-
-  <!-- TensorFlow.js + MoveNet -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+  <link rel="stylesheet" href="check.css">
 </head>
 <body>
 
-  <h1>フォームチェック</h1>
+<!-- 距離ガイド -->
+<div id="distance-guide">
+  <div id="distance-bar"></div>
+  <div id="distance-text"></div>
+</div>
 
-  <!-- 選択された動画 -->
-  <div class="video-wrapper">
-    <iframe id="exercise-youtube" frameborder="0" allowfullscreen></iframe>
-  </div>
+<!-- カメラ映像 -->
+<video id="camera" autoplay playsinline></video>
+<canvas id="skeleton"></canvas>
 
-  <!-- カメラ起動ボタン -->
-  <button id="start-camera-btn">カメラを起動</button>
+<!-- リアルタイム姿勢評価 -->
+<div id="live-feedback"></div>
 
-  <!-- カメラ＋骨格モデル -->
-  <div id="camera-area" class="camera-area" style="display:none;">
-    <video id="camera" autoplay playsinline></video>
-    <canvas id="skeleton"></canvas>
-  </div>
+<!-- AIコーチ -->
+<div id="coach">
+  <img src="coach.png" id="coach-img">
+  <div id="coach-text">準備中…</div>
+</div>
 
-  <!-- 解析ボタン -->
-  <button id="analyze-btn" style="display:none;">解析する</button>
+<!-- アプリ風 UI（丸ボタン） -->
+<div class="camera-ui">
+  <button id="startBtn" class="circle-btn start"></button>
+  <button id="stopBtn" class="circle-btn stop"></button>
+</div>
 
-  <script type="module" src="check.js"></script>
+<script src="check.js"></script>
 </body>
 </html>
