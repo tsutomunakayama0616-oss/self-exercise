@@ -1,0 +1,45 @@
+.header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.category-title {
+  margin: 20px 0 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.exercise-card {
+  display: flex;
+  gap: 12px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  cursor: pointer;
+}
+
+.exercise-card img {
+  width: 120px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.exercise-card h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.exercise-card p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #666;
+}
