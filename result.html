@@ -5,83 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>解析結果</title>
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="common.css" />
   <link rel="stylesheet" href="card.css" />
-  <link rel="stylesheet" href="tabbar.css">
-  <link rel="stylesheet" href="result.css">
-
-  <script src="tabbar.js" defer></script>
+  <link rel="stylesheet" href="result.css" />
+  <link rel="stylesheet" href="tabbar.css" />
 </head>
 
 <body>
 
-  <h1>解析結果</h1>
+<div class="container">
 
-  <!-- 骨格イラスト -->
-  <div class="illustration-card">
-    <svg id="pose-illustration" viewBox="0 0 200 300">
-      <circle cx="100" cy="40" r="20" fill="#ccc" />
-      <line x1="100" y1="60" x2="100" y2="140" stroke="#ccc" stroke-width="8" />
-      <line x1="100" y1="80" x2="50" y2="120" stroke="#ccc" stroke-width="8" />
-      <line x1="100" y1="80" x2="150" y2="120" stroke="#ccc" stroke-width="8" />
-      <line x1="100" y1="140" x2="60" y2="200" stroke="#ccc" stroke-width="8" />
-      <line x1="100" y1="140" x2="140" y2="200" stroke="#ccc" stroke-width="8" />
-    </svg>
-  </div>
+  <header class="header">
+    <h1>解析結果</h1>
+  </header>
 
-  <!-- 数値結果 -->
-  <div class="card">
-    <p>股関節外転角度：<span id="abduction"></span>°</p>
-    <p>膝角度：<span id="knee"></span>°</p>
-    <p>骨盤傾斜：<span id="pelvis"></span>°</p>
-    <p>体幹傾き：<span id="trunk"></span>°</p>
-  </div>
+  <main>
 
-  <!-- 評価 -->
-  <h2>評価</h2>
+    <!-- 骨格イラスト -->
+    <div class="illustration-card">
+      <svg id="pose-illustration" viewBox="0 0 200 300">
+        <circle cx="100" cy="40" r="20" fill="#ccc" />
+        <line x1="100" y1="60" x2="100" y2="140" stroke="#ccc" stroke-width="8" />
+        <line x1="100" y1="80" x2="50" y2="120" stroke="#ccc" stroke-width="8" />
+        <line x1="100" y1="80" x2="150" y2="120" stroke="#ccc" stroke-width="8" />
+        <line x1="100" y1="140" x2="60" y2="200" stroke="#ccc" stroke-width="8" />
+        <line x1="100" y1="140" x2="140" y2="200" stroke="#ccc" stroke-width="8" />
+      </svg>
+    </div>
 
-  <div class="result-section">
-    <h3>良い点</h3>
-    <ul id="good" class="good-list"></ul>
-  </div>
+    <!-- 数値結果 -->
+    <div class="card">
+      <p>股関節外転角度：<span id="abduction"></span>°</p>
+      <p>膝角度：<span id="knee"></span>°</p>
+      <p>骨盤傾斜：<span id="pelvis"></span>°</p>
+      <p>体幹傾き：<span id="trunk"></span>°</p>
+    </div>
 
-  <div class="result-section">
-    <h3>改善点</h3>
-    <ul id="bad" class="bad-list"></ul>
-  </div>
+    <!-- 評価 -->
+    <h2>評価</h2>
 
-  <!-- ▼▼▼ 統一された下タブ ▼▼▼ -->
-  <div class="tabbar">
+    <div class="result-section">
+      <h3>良い点</h3>
+      <ul id="good" class="good-list"></ul>
+    </div>
 
-    <a href="index.html" class="tab-item">
-      <span class="emoji">🏠</span>
-      <span>ホーム</span>
-    </a>
+    <div class="result-section">
+      <h3>改善点</h3>
+      <ul id="bad" class="bad-list"></ul>
+    </div>
 
-    <a href="exercises.html" class="tab-item">
-      <span class="emoji">🏋️</span>
-      <span>エクササイズ</span>
-    </a>
+  </main>
+</div>
 
-    <a href="check.html" class="tab-item">
-      <span class="emoji">🧍</span>
-      <span>フォーム</span>
-    </a>
+<!-- ▼▼▼ 統一された下タブ ▼▼▼ -->
+<div class="tabbar">
 
-    <a href="progress.html" class="tab-item">
-      <span class="emoji">📈</span>
-      <span>進捗</span>
-    </a>
+  <a href="index.html" class="tab-item">
+    <span class="emoji">🏠</span>
+    <span>ホーム</span>
+  </a>
 
-    <a href="guide.html" class="tab-item">
-      <span class="emoji">📘</span>
-      <span>ガイド</span>
-    </a>
+  <a href="exercises.html" class="tab-item">
+    <span class="emoji">🏋️</span>
+    <span>エクササイズ</span>
+  </a>
 
-  </div>
-  <!-- ▲▲▲ 統一された下タブ ▲▲▲ -->
+  <a href="check.html" class="tab-item">
+    <span class="emoji">🧍</span>
+    <span>フォーム</span>
+  </a>
 
-  <script type="module" src="result.js"></script>
+  <a href="progress.html" class="tab-item">
+    <span class="emoji">📈</span>
+    <span>進捗</span>
+  </a>
+
+  <a href="guide.html" class="tab-item">
+    <span class="emoji">📘</span>
+    <span>ガイド</span>
+  </a>
+
+</div>
+<!-- ▲▲▲ 統一された下タブ ▲▲▲ -->
+
+<script type="module" src="result.js"></script>
 
 </body>
 </html>
