@@ -6,10 +6,9 @@
   <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="check.css">
   <link rel="stylesheet" href="tabbar.css">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
 </head>
+
 <body>
 
 <div class="container">
@@ -27,23 +26,29 @@
         allowfullscreen></iframe>
     </div>
 
-    <!-- カメラ起動ボタン -->
-    <button id="startCameraBtn" class="primary-btn">カメラを起動</button>
+    <!-- ▼▼▼ 新しい撮影フロー ▼▼▼ -->
 
-    <!-- カメラ映像（骨格モデルつき） -->
-    <div class="camera-area">
+    <!-- ① カメラ起動前（撮影前） -->
+    <div id="camera-area">
       <video id="camera" autoplay playsinline></video>
-      <canvas id="poseCanvas"></canvas>
+      <button id="start-record" class="primary-btn">撮影開始</button>
     </div>
 
-    <!-- カメラ停止ボタン -->
-    <button id="stopCameraBtn" class="secondary-btn">カメラを停止</button>
-
-    <!-- 解析結果 -->
-    <div class="result-box">
-      <h2>解析結果</h2>
-      <p id="analysisText">カメラを起動すると解析が始まります。</p>
+    <!-- ② 録画中 -->
+    <div id="recording-area" style="display:none;">
+      <video id="camera-recording" autoplay playsinline></video>
+      <button id="stop-record" class="secondary-btn">停止</button>
     </div>
+
+    <!-- ③ 撮影後プレビュー -->
+    <div id="preview-area" style="display:none;">
+      <video id="preview" controls></video>
+
+      <button id="retry" class="secondary-btn">もう一度撮影する</button>
+      <button id="analyze" class="primary-btn">解析を始める</button>
+    </div>
+
+    <!-- ▲▲▲ 新しい撮影フロー ▲▲▲ -->
 
   </main>
 </div>
@@ -118,7 +123,6 @@ const info = exerciseData[exercise];
 document.getElementById("exerciseTitle").textContent = info.title;
 document.getElementById("exerciseVideo").src =
   "https://www.youtube.com/embed/" + info.url;
-
 </script>
 
 </body>
