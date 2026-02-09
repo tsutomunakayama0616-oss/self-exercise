@@ -1,207 +1,188 @@
-// =======================
-// エクササイズ種別の取得
-// =======================
-const params = new URLSearchParams(location.search);
-const exercise = params.get("exercise") || "squat";
+/* ----------------------------------------------------
+   check.js（最終版）
+   - カメラ起動 / 停止
+   - MoveNet 推論
+   - 骨格描画
+   - フォーム解析
+   - 進捗保存
+---------------------------------------------------- */
 
-// =======================
-// 音声フィードバック
-// =======================
-function speak(text) {
-  const uttr = new SpeechSynthesisUtterance(text);
-  uttr.lang = "ja-JP";
-  uttr.rate = 1.1;
-  speechSynthesis.speak(uttr);
+/* ------------------------------
+   HTML要素の取得
+------------------------------ */
+const video = document.getElementById("camera");
+const canvas = document.getElementById("poseCanvas");
+const ctx = canvas.getContext("2d");
+const analysisText = document.getElementById("analysisText");
+
+const startBtn = document.getElementById("startCameraBtn");
+const stopBtn = document.getElementById("stopCameraBtn");
+
+let stream = null;
+let detector = null;
+let running = false;
+
+/* ------------------------------
+   MoveNet の読み込み
+------------------------------ */
+async function loadModel() {
+  detector = await poseDetection.createDetector(
+    poseDetection.SupportedModels.MoveNet,
+    { modelType: poseDetection.movenet.modelType.SINGLEPOSE_LIGHTNING }
+  );
 }
 
-const beep = new Audio("beep.mp3");
+/* ------------------------------
+   カメラ起動
+------------------------------ */
+async function startCamera() {
+  if (running) return;
 
-function playBeep() {
-  beep.currentTime = 0;
-  beep.play();
+  stream = await navigator.mediaDevices.getUserMedia({
+    video: { facingMode: "user" }, // インカメラ
+    audio: false
+  });
+
+  video.srcObject = stream;
+
+  running = true;
+  analysisText.textContent = "解析中…";
+
+  requestAnimationFrame(loop);
 }
 
-// =======================
-// 距離推定
-// =======================
-function estimateDistance(keypoints) {
-  const left = keypoints[5];
-  const right = keypoints[6];
+/* ------------------------------
+   カメラ停止
+------------------------------ */
+function stopCamera() {
+  running = false;
+  analysisText.textContent = "カメラを停止しました。";
 
-  if (left.score < 0.3 || right.score < 0.3) return null;
-
-  const dx = left.x - right.x;
-  const dy = left.y - right.y;
-  const pixelWidth = Math.sqrt(dx*dx + dy*dy);
-
-  return 200 / pixelWidth;
-}
-
-function updateDistanceGuide(distance) {
-  const bar = document.getElementById("distance-bar");
-  const text = document.getElementById("distance-text");
-
-  if (!distance) {
-    text.textContent = "人物を検出しています…";
-    bar.style.width = "0%";
-    bar.style.background = "gray";
-    return;
-  }
-
-  const percent = Math.min(100, Math.max(0, (distance / 4) * 100));
-  bar.style.width = percent + "%";
-
-  if (distance < 1.2) {
-    bar.style.background = "red";
-    text.textContent = "近すぎます（もう少し下がってください）";
-  } else if (distance < 1.5) {
-    bar.style.background = "yellow";
-    text.textContent = "やや近いです";
-  } else if (distance <= 2.5) {
-    bar.style.background = "green";
-    text.textContent = "適正距離です";
-  } else if (distance <= 3.0) {
-    bar.style.background = "yellow";
-    text.textContent = "やや遠いです";
-  } else {
-    bar.style.background = "red";
-    text.textContent = "遠すぎます（もう少し近づいてください）";
+  if (stream) {
+    stream.getTracks().forEach(t => t.stop());
   }
 }
 
-// =======================
-// 骨格ライン描画
-// =======================
-function drawSkeleton(keypoints) {
-  const canvas = document.getElementById("skeleton");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = canvas.clientWidth;
-  canvas.height = canvas.clientHeight;
-
+/* ------------------------------
+   骨格描画
+------------------------------ */
+function drawPose(keypoints) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.strokeStyle = "rgba(0,255,0,0.6)";
-  ctx.lineWidth = 3;
 
+  const scaleX = canvas.width / video.videoWidth;
+  const scaleY = canvas.height / video.videoHeight;
+
+  // 点
+  keypoints.forEach(kp => {
+    if (kp.score > 0.3) {
+      ctx.beginPath();
+      ctx.arc(kp.x * scaleX, kp.y * scaleY, 5, 0, Math.PI * 2);
+      ctx.fillStyle = "#00e676";
+      ctx.fill();
+    }
+  });
+
+  // 線（主要な骨格）
   const edges = [
-    [5, 7], [7, 9],
-    [6, 8], [8, 10],
-    [5, 6],
-    [11, 12],
-    [11, 13], [13, 15],
-    [12, 14], [14, 16]
+    [5, 7], [7, 9],   // 左腕
+    [6, 8], [8, 10],  // 右腕
+    [5, 6],           // 肩
+    [11, 12],         // 腰
+    [5, 11], [6, 12], // 体幹
+    [11, 13], [13, 15], // 左脚
+    [12, 14], [14, 16]  // 右脚
   ];
+
+  ctx.strokeStyle = "#00bfa5";
+  ctx.lineWidth = 3;
 
   edges.forEach(([a, b]) => {
     const p1 = keypoints[a];
     const p2 = keypoints[b];
-
     if (p1.score > 0.3 && p2.score > 0.3) {
       ctx.beginPath();
-      ctx.moveTo(p1.x, p1.y);
-      ctx.lineTo(p2.x, p2.y);
+      ctx.moveTo(p1.x * scaleX, p1.y * scaleY);
+      ctx.lineTo(p2.x * scaleX, p2.y * scaleY);
       ctx.stroke();
     }
   });
 }
 
-// =======================
-// リアルタイム姿勢評価
-// =======================
-function getBodyTilt(keypoints) {
-  const L = keypoints[5];
-  const R = keypoints[6];
-  if (L.score < 0.3 || R.score < 0.3) return null;
-  return Math.atan2(L.y - R.y, L.x - R.x) * 180 / Math.PI;
-}
+/* ------------------------------
+   フォーム解析（簡易版）
+------------------------------ */
+function analyzePose(keypoints) {
+  const leftShoulder = keypoints[5];
+  const rightShoulder = keypoints[6];
 
-function getHipTilt(keypoints) {
-  const L = keypoints[11];
-  const R = keypoints[12];
-  if (L.score < 0.3 || R.score < 0.3) return null;
-  return Math.atan2(L.y - R.y, L.x - R.x) * 180 / Math.PI;
-}
-
-function generateLiveFeedback(exercise, keypoints) {
-  const tilt = getBodyTilt(keypoints);
-  const hip = getHipTilt(keypoints);
-
-  let msg = "";
-
-  if (!tilt || !hip) return "姿勢を検出しています…";
-
-  if (Math.abs(tilt) > 10) msg += "上半身が傾いています。<br>";
-  if (Math.abs(hip) > 10) msg += "骨盤が傾いています。<br>";
-
-  if (msg === "") msg = "良い姿勢です！そのまま続けましょう。";
-
-  return msg;
-}
-
-// =======================
-// AIコーチ（表情＋セリフ）
-// =======================
-const coachLines = {
-  good: [
-    "その調子！とても良い姿勢です。",
-    "完璧です！そのまま続けましょう。",
-    "いいですね！安定しています。",
-    "素晴らしいフォームです！"
-  ],
-  bad: [
-    "少し姿勢を整えましょう。",
-    "ゆっくり動いて安定させましょう。",
-    "もう少しだけ意識してみましょう。",
-    "焦らず丁寧に動きましょう。"
-  ]
-};
-
-function getRandomLine(type) {
-  const list = coachLines[type];
-  return list[Math.floor(Math.random() * list.length)];
-}
-
-function updateCoachExpression(isGood) {
-  const img = document.getElementById("coach-img");
-  img.src = isGood ? "coach_smile.png" : "coach.png";
-}
-
-function updateCoach(feedback) {
-  const coachText = document.getElementById("coach-text");
-  const good = feedback.includes("良い姿勢です");
-  coachText.innerHTML = good ? getRandomLine("good") : getRandomLine("bad");
-}
-
-// =======================
-// リアルタイム更新
-// =======================
-let lastFeedback = "";
-let wasGood = false;
-
-function updateLiveFeedback(feedback) {
-  const box = document.getElementById("live-feedback");
-  box.innerHTML = feedback;
-
-  const good = feedback.includes("良い姿勢です");
-
-  updateCoachExpression(good);
-  updateCoach(feedback);
-
-  if (good && !wasGood) playBeep();
-  wasGood = good;
-
-  if (feedback !== lastFeedback) {
-    speak(feedback.replace(/<br>/g, " "));
-    lastFeedback = feedback;
+  if (leftShoulder.score < 0.3 || rightShoulder.score < 0.3) {
+    return "姿勢が検出できません。カメラから少し離れてください。";
   }
+
+  const diff = Math.abs(leftShoulder.y - rightShoulder.y);
+
+  if (diff < 20) return "良い姿勢です！左右のバランスが整っています。";
+  if (diff < 40) return "少し傾いています。肩の高さを揃えましょう。";
+
+  return "大きく傾いています。姿勢をまっすぐにしましょう。";
 }
 
-// =======================
-// onPoseDetected 内で呼ぶ
-// =======================
-//
-// const feedback = generateLiveFeedback(exercise, keypoints);
-// updateLiveFeedback(feedback);
-// updateDistanceGuide(estimateDistance(keypoints));
-// drawSkeleton(keypoints);
-//
+/* ------------------------------
+   進捗保存
+------------------------------ */
+function saveProgress(score) {
+  const today = new Date();
+  const dateStr = today.toISOString().slice(0, 10);
+
+  const raw = localStorage.getItem("progress") || "[]";
+  const records = JSON.parse(raw);
+
+  records.push({
+    date: dateStr,
+    exercise: exercise,
+    score: score
+  });
+
+  localStorage.setItem("progress", JSON.stringify(records));
+}
+
+/* ------------------------------
+   メインループ
+------------------------------ */
+async function loop() {
+  if (!running) return;
+
+  if (video.readyState >= 2) {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    const poses = await detector.estimatePoses(video);
+    if (poses.length > 0) {
+      const keypoints = poses[0].keypoints;
+
+      drawPose(keypoints);
+
+      const result = analyzePose(keypoints);
+      analysisText.textContent = result;
+
+      // スコア化（簡易）
+      const score = result.includes("良い姿勢") ? 90 :
+                    result.includes("少し傾いて") ? 70 : 40;
+
+      saveProgress(score);
+    }
+  }
+
+  requestAnimationFrame(loop);
+}
+
+/* ------------------------------
+   イベント登録
+------------------------------ */
+startBtn.addEventListener("click", startCamera);
+stopBtn.addEventListener("click", stopCamera);
+
+/* ------------------------------
+   初期化
+------------------------------ */
+loadModel();
