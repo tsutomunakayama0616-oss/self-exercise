@@ -1,4 +1,4 @@
-// check.js の saveProgress で保存されたデータを利用
+// check.js の saveProgress() で保存されたデータを利用
 // localStorage key: "progress"
 // 形式: [{ date: "2026-02-09", exercise: "squat", score: 85 }, ...]
 
