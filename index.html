@@ -1,31 +1,55 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>自主トレアプリ</title>
-
-  <!-- manifest を必ず読み込む -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- iOS 用（Safari） -->
-  <link rel="apple-touch-icon" href="icon-192.png">
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="tabbar.css" />
-  <link rel="stylesheet" href="index.css" />
-
-  <script src="tabbar.js" defer></script>
+  <meta charset="UTF-8">
+  <title>ホーム</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-  <div class="hero">
-    <div class="hero-icon">💪</div>
-    <h1 class="hero-title">自主トレサポート</h1>
-    <p class="hero-sub">あなたのリハビリをもっと身近に。</p>
+<div class="container">
+  <header class="header">
+    <h1>フォームチェックアプリ</h1>
+  </header>
 
-    <a href="exercises.html" class="start-btn">はじめる</a>
-  </div>
+  <main>
+    <div class="hero">
+      <img src="start.png" alt="スタートイラスト" class="hero-image">
+    </div>
+
+    <div class="goal-box">
+      <h2>今日の目標</h2>
+      <p id="todayGoal">--</p>
+    </div>
+
+    <div class="menu">
+      <a href="exercises.html" class="menu-card">
+        <h3>エクササイズを選ぶ</h3>
+        <p>フォームをチェックしながら運動しましょう。</p>
+      </a>
+      <a href="progress.html" class="menu-card">
+        <h3>進捗を見る</h3>
+        <p>これまでのフォーム精度を確認できます。</p>
+      </a>
+      <a href="guide.html" class="menu-card">
+        <h3>使い方ガイド</h3>
+        <p>アプリの使い方と撮影のポイント。</p>
+      </a>
+    </div>
+  </main>
+</div>
+
+<script>
+  const goals = [
+    "スクワットを10回正しいフォームで行う",
+    "ヒップリフトをゆっくり10回行う",
+    "サイドレッグレイズを左右10回ずつ行う",
+    "姿勢を意識して5分間立つ",
+    "肩の力を抜いて深呼吸を3回する"
+  ];
+  document.getElementById("todayGoal").textContent =
+    goals[Math.floor(Math.random() * goals.length)];
+</script>
 
 </body>
 </html>
