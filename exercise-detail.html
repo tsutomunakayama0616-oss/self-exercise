@@ -1,44 +1,145 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>エクササイズ詳細</title>
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="card.css" />
-  <link rel="stylesheet" href="tabbar.css" />
-  <link rel="stylesheet" href="exercise-detail.css" />
-
-  <!-- TensorFlow.js + MoveNet -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+  <link rel="stylesheet" href="exercise-detail.css">
 </head>
 <body>
 
-  <h1 id="exercise-title"></h1>
-  <p id="exercise-description"></p>
-  <div id="exercise-note" class="card"></div>
+<div class="container">
+  <header class="header">
+    <h1 id="exerciseTitle">エクササイズ</h1>
+  </header>
 
-  <!-- ① YouTube動画 -->
-  <div class="video-wrapper">
-    <iframe id="exercise-youtube" frameborder="0" allowfullscreen></iframe>
-  </div>
+  <main>
+    <section class="card">
+      <h2>ポイント</h2>
+      <p id="exerciseDesc">読み込み中…</p>
+    </section>
 
-  <!-- ② カメラ＋骨格モデル -->
-  <div class="camera-area">
-    <video id="camera" autoplay playsinline></video>
-    <canvas id="skeleton"></canvas>
-  </div>
+    <section class="card">
+      <h2>動画で確認</h2>
+      <p>動きのイメージをつかむために、公式動画を参考にしてください。</p>
+      <a id="videoLink" class="secondary-btn" target="_blank" rel="noopener">YouTubeで見る</a>
+    </section>
 
-  <!-- ③ 解析ボタン -->
-  <button id="analyze-btn">解析を開始</button>
+    <section class="card">
+      <h2>フォームチェックを開始</h2>
+      <p>カメラを使ってフォームを解析します。</p>
+      <a id="startCheck" class="primary-btn">フォームチェックへ</a>
+    </section>
+  </main>
+</div>
 
-  <!-- タブバー（自動挿入） -->
-  <script src="tabbar.js" defer></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const exercise = params.get("exercise") || "hamstring";
 
-  <!-- MoveNet + カメラ制御 -->
-  <script type="module" src="exercise-detail.js"></script>
+  const data = {
+    hamstring: {
+      title: "ハムストリングス（大腿部後面）のストレッチ",
+      desc: "もも裏の筋肉をゆっくり伸ばします。痛みの出ない範囲で、呼吸を止めずに行いましょう。",
+      url: "https://youtu.be/ihchQBuigY0"
+    },
+    quad_stretch: {
+      title: "大腿四頭筋（大腿部前面）のストレッチ",
+      desc: "もも前の筋肉を伸ばします。膝や腰に負担がかからない姿勢で行いましょう。",
+      url: "https://youtu.be/lVpF9TiepLg"
+    },
+    iliopsoas: {
+      title: "腸腰筋（股関節前面）のストレッチ",
+      desc: "股関節の前側を伸ばします。腰を反らせすぎないように注意しましょう。",
+      url: "https://youtu.be/XIA80pBZ3ws"
+    },
+    adductor: {
+      title: "内転筋（大腿部内側）のストレッチ",
+      desc: "内ももの筋肉を伸ばします。背すじを伸ばし、反動をつけずに行いましょう。",
+      url: "https://youtu.be/racb4M_hycM"
+    },
+    calf: {
+      title: "下腿三頭筋（ふくらはぎ）のストレッチ",
+      desc: "ふくらはぎを伸ばします。かかとが浮かない範囲で、心地よい伸び感を目安にしましょう。",
+      url: "https://youtu.be/Wbi5St1J9Kk"
+    },
+    ankle_pump: {
+      title: "足首の上下（ポンプ）運動",
+      desc: "足首を上下に動かし、血流を促進します。むくみ予防にも有効です。",
+      url: "https://youtu.be/-inqX6tmDm8"
+    },
+    glute_set: {
+      title: "大殿筋（お尻）の筋力増強運動（収縮のみ）",
+      desc: "お尻の筋肉を意識して締めます。腰や太ももに力が入りすぎないようにしましょう。",
+      url: "https://youtu.be/4ckJ67_8IB8"
+    },
+    glute_bridge: {
+      title: "大殿筋（お尻）の筋力増強運動（ブリッジ）",
+      desc: "仰向けでお尻を持ち上げます。腰を反らせすぎず、お腹とお尻を意識しましょう。",
+      url: "https://youtu.be/9zKZ-YRmU8I"
+    },
+    glute_stand: {
+      title: "大殿筋（お尻）の筋力増強運動（立位）",
+      desc: "立った姿勢でお尻の筋肉を使います。身体が反らないように注意しましょう。",
+      url: "https://youtu.be/aikGoCaTFFI"
+    },
+    quad_setting: {
+      title: "大腿四頭筋（大腿部前面）の筋力増強運動（セッティング）",
+      desc: "膝を伸ばす筋肉を意識して力を入れます。膝裏を床に押し付けるイメージです。",
+      url: "https://youtu.be/rweyU-3O3zo"
+    },
+    quad_slr: {
+      title: "大腿四頭筋（大腿部前面）の筋力増強運動（SLR）",
+      desc: "膝を伸ばしたまま脚を持ち上げます。腰が反らないように注意しましょう。",
+      url: "https://youtu.be/fNM6w_RnVRk"
+    },
+    gm_back: {
+      title: "中殿筋（殿部外側）の筋力増強運動（背臥位）",
+      desc: "横向きで脚を横に持ち上げます。身体が後ろに倒れないようにしましょう。",
+      url: "https://youtu.be/UBN5jCP-ErM"
+    },
+    gm_stand: {
+      title: "中殿筋（殿部外側）の筋力増強運動（立位）",
+      desc: "立位で脚を横に開きます。骨盤が傾かないように意識しましょう。",
+      url: "https://youtu.be/0gKoLDR8HcI"
+    },
+    balance_tandem: {
+      title: "バランス運動（タンデム）",
+      desc: "前後に足を並べて立ち、バランスをとります。転倒に注意し、必要に応じて手すりを使いましょう。",
+      url: "https://youtu.be/F0OVS9LT1w4"
+    },
+    balance_single: {
+      title: "バランス運動（片脚立位）",
+      desc: "片脚で立ち、バランス能力を高めます。安全のため、必ずつかまれる場所の近くで行いましょう。",
+      url: "https://youtu.be/HUjoGJtiknc"
+    },
+    walking: {
+      title: "ウォーキング",
+      desc: "自分のペースで歩きます。姿勢を意識し、無理のない距離から始めましょう。",
+      url: "https://youtu.be/Cs4NOzgkS8s"
+    },
+    ergometer: {
+      title: "自転車エルゴメータ",
+      desc: "膝にやさしい有酸素運動です。負荷は軽めから始め、体調に合わせて調整しましょう。",
+      url: "https://youtu.be/12_J_pr-MUE"
+    },
+    water: {
+      title: "水中運動",
+      desc: "水の浮力を利用して関節にやさしく運動します。安全のため、監視のある環境で行いましょう。",
+      url: "https://youtu.be/xqj3dn9mw50"
+    }
+  };
+
+  const info = data[exercise] || data.hamstring;
+
+  document.getElementById("exerciseTitle").textContent = info.title;
+  document.getElementById("exerciseDesc").textContent = info.desc;
+
+  const videoLink = document.getElementById("videoLink");
+  videoLink.href = info.url;
+
+  const startLink = document.getElementById("startCheck");
+  startLink.href = "check.html?exercise=" + encodeURIComponent(exercise);
+</script>
+
 </body>
 </html>
