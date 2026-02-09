@@ -6,6 +6,14 @@
   <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="tabbar.css">
+
+  <link rel="manifest" href="manifest.json">
+　<meta name="theme-color" content="#2196f3">
+
+　<!-- iOS 用 -->
+　<link rel="apple-touch-icon" href="icon-192.png">
+　<meta name="apple-mobile-web-app-capable" content="yes">
+　<meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 <body>
 
@@ -67,6 +75,12 @@
   ];
   document.getElementById("todayGoal").textContent =
     goals[Math.floor(Math.random() * goals.length)];
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
 </script>
 
 </body>
