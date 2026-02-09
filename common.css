@@ -12,15 +12,17 @@ body {
 
 .container {
   max-width: 480px;
+  width: 100%;
   margin: 0 auto;
   padding: 16px;
-}
-
-h1, h2, h3, p {
-  margin: 0;
-  padding: 0;
+  box-sizing: border-box;
 }
 
 main {
   padding-bottom: 20px;
+}
+
+img, video, iframe, canvas {
+  max-width: 100%;
+  height: auto;
 }
