@@ -1,45 +1,52 @@
-const CACHE_NAME = "selftraining-cache-v1";
-const URLS_TO_CACHE = [
+const CACHE_NAME = "form-check-app-v1";
+const urlsToCache = [
   "index.html",
   "exercises.html",
-  "exercise-detail.html",
   "check.html",
-  "result.html",
   "progress.html",
   "guide.html",
-  "style.css",
+
+  "common.css",
   "tabbar.css",
-  "card.css",
-  "camera.css",
-  "script.js",
-  "exercises.js",
-  "analysis.js",
+  "index.css",
+  "exercises.css",
+  "check.css",
+  "progress.css",
+  "guide.css",
+
+  "check.js",
   "progress.js",
-  "result.js",
-  "icon-152.png",
+
+  "start.png",
   "icon-192.png",
-  "icon-512.png",
-  "manifest.json"
+  "icon-512.png"
 ];
 
+// インストール（キャッシュ登録）
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(URLS_TO_CACHE))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
   );
 });
 
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
-      )
-    )
-  );
-});
-
+// リクエスト取得
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request).then(res => res || fetch(event.request))
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
+});
+
+// 新バージョンのキャッシュ削除
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys
+          .filter(key => key !== CACHE_NAME)
+          .map(key => caches.delete(key))
+      );
+    })
   );
 });
