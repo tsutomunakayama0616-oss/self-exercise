@@ -12,6 +12,7 @@
 
   <script src="tabbar.js" defer></script>
 </head>
+
 <body>
 
   <h1>解析結果</h1>
@@ -19,7 +20,6 @@
   <!-- 骨格イラスト -->
   <div class="illustration-card">
     <svg id="pose-illustration" viewBox="0 0 200 300">
-      <!-- シンプルな骨格イラスト（棒人間） -->
       <circle cx="100" cy="40" r="20" fill="#ccc" />
       <line x1="100" y1="60" x2="100" y2="140" stroke="#ccc" stroke-width="8" />
       <line x1="100" y1="80" x2="50" y2="120" stroke="#ccc" stroke-width="8" />
@@ -50,6 +50,38 @@
     <ul id="bad" class="bad-list"></ul>
   </div>
 
+  <!-- ▼▼▼ 統一された下タブ ▼▼▼ -->
+  <div class="tabbar">
+
+    <a href="index.html" class="tab-item">
+      <span class="emoji">🏠</span>
+      <span>ホーム</span>
+    </a>
+
+    <a href="exercises.html" class="tab-item">
+      <span class="emoji">🏋️</span>
+      <span>エクササイズ</span>
+    </a>
+
+    <a href="check.html" class="tab-item">
+      <span class="emoji">🧍</span>
+      <span>フォーム</span>
+    </a>
+
+    <a href="progress.html" class="tab-item">
+      <span class="emoji">📈</span>
+      <span>進捗</span>
+    </a>
+
+    <a href="guide.html" class="tab-item">
+      <span class="emoji">📘</span>
+      <span>ガイド</span>
+    </a>
+
+  </div>
+  <!-- ▲▲▲ 統一された下タブ ▲▲▲ -->
+
   <script type="module" src="result.js"></script>
+
 </body>
 </html>
