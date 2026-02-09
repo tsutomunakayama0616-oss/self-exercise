@@ -3,35 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <title>フォームチェック</title>
+  <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="check.css">
+  <link rel="stylesheet" href="tabbar.css">
 </head>
 <body>
 
-<!-- 距離ガイド -->
-<div id="distance-guide">
-  <div id="distance-bar"></div>
-  <div id="distance-text"></div>
+<div class="container">
+
+  <header class="header">
+    <h1 id="exerciseTitle">フォームチェック</h1>
+  </header>
+
+  <main>
+
+    <!-- YouTube動画 -->
+    <div class="video-wrapper">
+      <iframe id="exerciseVideo" src="" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+    <!-- カメラ起動ボタン -->
+    <button id="startCameraBtn" class="primary-btn">カメラを起動</button>
+
+    <!-- カメラ映像（骨格モデルつき） -->
+    <div class="camera-area">
+      <video id="camera" autoplay playsinline></video>
+      <canvas id="poseCanvas"></canvas>
+    </div>
+
+    <!-- カメラ停止ボタン -->
+    <button id="stopCameraBtn" class="secondary-btn">カメラを停止</button>
+
+    <!-- 解析結果 -->
+    <div class="result-box">
+      <h2>解析結果</h2>
+      <p id="analysisText">カメラを起動すると解析が始まります。</p>
+    </div>
+
+  </main>
 </div>
 
-<!-- カメラ映像 -->
-<video id="camera" autoplay playsinline></video>
-<canvas id="skeleton"></canvas>
-
-<!-- リアルタイム姿勢評価 -->
-<div id="live-feedback"></div>
-
-<!-- AIコーチ -->
-<div id="coach">
-  <img src="coach.png" id="coach-img">
-  <div id="coach-text">準備中…</div>
-</div>
-
-<!-- アプリ風 UI（丸ボタン） -->
-<div class="camera-ui">
-  <button id="startBtn" class="circle-btn start"></button>
-  <button id="stopBtn" class="circle-btn stop"></button>
+<!-- 下タブ -->
+<div class="tabbar">
+  <a href="index.html" class="tab-item"><span>ホーム</span></a>
+  <a href="exercises.html" class="tab-item"><span>エクササイズ</span></a>
+  <a href="progress.html" class="tab-item"><span>進捗</span></a>
+  <a href="guide.html" class="tab-item"><span>ガイド</span></a>
 </div>
 
 <script src="check.js"></script>
+
+<script>
+/* ------------------------------
+   URLパラメータから種目を取得
+------------------------------ */
+const params = new URLSearchParams(location.search);
+const exercise = params.get("exercise") || "hamstring";
+
+/* ------------------------------
+   種目データ（YouTube URL）
+------------------------------ */
+const exerciseData = {
+  hamstring: { title: "ハムストリングス（大腿部後面）", url: "ihchQBuigY0" },
+  quad_stretch: { title: "大腿四頭筋（大腿部前面）", url: "lVpF9TiepLg" },
+  iliopsoas: { title: "腸腰筋（股関節前面）", url: "XIA80pBZ3ws" },
+  adductor: { title: "内転筋（大腿部内側）", url: "racb4M_hycM" },
+  calf: { title: "下腿三頭筋（ふくらはぎ）", url: "Wbi5St1J9Kk" },
+  ankle_pump: { title: "足首の上下（ポンプ）運動", url: "-inqX6tmDm8" },
+  glute_set: { title: "大殿筋（収縮のみ）", url: "4ckJ67_8IB8" },
+  glute_bridge: { title: "大殿筋（ブリッジ）", url: "9zKZ-YRmU8I" },
+  glute_stand: { title: "大殿筋（立位）", url: "aikGoCaTFFI" },
+  quad_setting: { title: "大腿四頭筋（セッティング）", url: "rweyU-3O3zo" },
+  quad_slr: { title: "大腿四頭筋（SLR）", url: "fNM6w_RnVRk" },
+  gm_back: { title: "中殿筋（背臥位）", url: "UBN5jCP-ErM" },
+  gm_stand: { title: "中殿筋（立位）", url: "0gKoLDR8HcI" },
+  balance_tandem: { title: "バランス（タンデム）", url: "F0OVS9LT1w4" },
+  balance_single: { title: "バランス（片脚立位）", url: "HUjoGJtiknc" },
+  walking: { title: "ウォーキング", url: "Cs4NOzgkS8s" },
+  ergometer: { title: "自転車エルゴメータ", url: "12_J_pr-MUE" },
+  water: { title: "水中運動", url: "xqj3dn9mw50" }
+};
+
+/* ------------------------------
+   YouTube動画をセット
+------------------------------ */
+const info = exerciseData[exercise];
+document.getElementById("exerciseTitle").textContent = info.title;
+document.getElementById("exerciseVideo").src =
+  "https://www.youtube.com/embed/" + info.url;
+
+</script>
+
 </body>
 </html>
