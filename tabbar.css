@@ -1,12 +1,8 @@
-/* ------------------------------------
-   下タブ（常に表示）
------------------------------------- */
-
 .tabbar {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 100%;          /* ← 画面幅いっぱいに固定 */
   height: 60px;
   background: #ffffff;
   border-top: 1px solid #ddd;
@@ -28,9 +24,4 @@
 .tab-item.active {
   color: #2196f3;
   font-weight: bold;
-}
-
-.tab-item span {
-  display: block;
-  margin-top: 2px;
 }
