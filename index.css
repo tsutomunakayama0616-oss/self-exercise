@@ -1,54 +1,77 @@
-/* 背景グラデーション */
 body {
-  background: linear-gradient(135deg, #a5d6a7, #81c784);
-  height: 100vh;
   margin: 0;
-  padding-bottom: 80px; /* タブバー分 */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f5f5f5;
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.header h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.hero {
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-family: "Helvetica", "Arial", sans-serif;
+  margin-bottom: 16px;
 }
 
-/* 中央のヒーローエリア */
-.hero {
-  text-align: center;
-  color: white;
-  padding: 20px;
+.hero-image {
+  max-width: 80%;
+  height: auto;
 }
 
-/* アイコン（ロゴ代わり） */
-.hero-icon {
-  font-size: 70px;
-  margin-bottom: 10px;
+.goal-box {
+  background: #e3f2fd;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border-left: 6px solid #2196f3;
+  margin-bottom: 16px;
 }
 
-/* タイトル */
-.hero-title {
-  font-size: 36px;
-  font-weight: bold;
+.goal-box h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+
+.goal-box p {
   margin: 0;
+  font-size: 14px;
 }
 
-/* サブタイトル */
-.hero-sub {
-  font-size: 18px;
-  margin: 10px 0 30px;
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* はじめるボタン */
-.start-btn {
-  display: inline-block;
-  padding: 14px 40px;
-  background: white;
-  color: #2e7d32;
-  font-size: 20px;
-  font-weight: bold;
-  border-radius: 30px;
+.menu-card {
+  display: block;
+  background: #ffffff;
+  padding: 12px 14px;
+  border-radius: 10px;
   text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
 }
 
-.start-btn:hover {
-  background: #f1f8e9;
+.menu-card h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+
+.menu-card p {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
 }
