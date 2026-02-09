@@ -3,40 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <title>ホーム</title>
+  <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="tabbar.css">
 </head>
 <body>
 
 <div class="container">
+
   <header class="header">
     <h1>フォームチェックアプリ</h1>
   </header>
 
   <main>
+
+    <!-- メインイラスト -->
     <div class="hero">
-      <img src="start.png" alt="スタートイラスト" class="hero-image">
+      <img src="start.png" class="hero-image" alt="スタート画像">
     </div>
 
+    <!-- 今日の目標 -->
     <div class="goal-box">
       <h2>今日の目標</h2>
       <p id="todayGoal">--</p>
     </div>
 
+    <!-- メニュー -->
     <div class="menu">
       <a href="exercises.html" class="menu-card">
         <h3>エクササイズを選ぶ</h3>
         <p>フォームをチェックしながら運動しましょう。</p>
       </a>
+
       <a href="progress.html" class="menu-card">
         <h3>進捗を見る</h3>
         <p>これまでのフォーム精度を確認できます。</p>
       </a>
+
       <a href="guide.html" class="menu-card">
         <h3>使い方ガイド</h3>
         <p>アプリの使い方と撮影のポイント。</p>
       </a>
     </div>
+
   </main>
+</div>
+
+<!-- 下タブ -->
+<div class="tabbar">
+  <a href="index.html" class="tab-item active"><span>ホーム</span></a>
+  <a href="exercises.html" class="tab-item"><span>エクササイズ</span></a>
+  <a href="progress.html" class="tab-item"><span>進捗</span></a>
+  <a href="guide.html" class="tab-item"><span>ガイド</span></a>
 </div>
 
 <script>
