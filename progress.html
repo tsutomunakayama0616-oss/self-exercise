@@ -3,26 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <title>進捗</title>
+  <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="progress.css">
+  <link rel="stylesheet" href="tabbar.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <div class="container">
+
   <header class="header">
     <h1>フォーム精度の推移</h1>
   </header>
 
   <main>
+
+    <!-- 年月セレクト -->
     <div class="tabs">
       <select id="yearSelect"></select>
       <select id="monthSelect"></select>
     </div>
 
+    <!-- グラフ -->
     <canvas id="progressChart"></canvas>
+
   </main>
 </div>
 
+<!-- 下タブ -->
+<div class="tabbar">
+  <a href="index.html" class="tab-item"><span>ホーム</span></a>
+  <a href="exercises.html" class="tab-item"><span>エクササイズ</span></a>
+  <a href="progress.html" class="tab-item active"><span>進捗</span></a>
+  <a href="guide.html" class="tab-item"><span>ガイド</span></a>
+</div>
+
 <script src="progress.js"></script>
+
 </body>
 </html>
